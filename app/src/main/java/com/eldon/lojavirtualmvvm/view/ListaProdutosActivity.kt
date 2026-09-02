@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.eldon.lojavirtualmvvm.R
 import com.eldon.lojavirtualmvvm.databinding.ActivityListaProdutosBinding
 import com.eldon.lojavirtualmvvm.viewmodel.ListaProdutosViewModel
+import android.content.Intent
 
 class ListaProdutosActivity : AppCompatActivity() {
 
@@ -16,7 +17,16 @@ class ListaProdutosActivity : AppCompatActivity() {
 
     private val viewModel: ListaProdutosViewModel by viewModels()
 
-    private val adaptadorProdutos = AdaptadorProdutos()
+    private val adaptadorProdutos = AdaptadorProdutos { produto ->
+        val intencao = Intent(this, DetalheProdutoActivity::class.java)
+
+        intencao.putExtra(
+            DetalheProdutoActivity.EXTRA_ID_PRODUTO,
+            produto.id
+        )
+
+        startActivity(intencao)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

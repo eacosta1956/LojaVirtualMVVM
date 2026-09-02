@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eldon.lojavirtualmvvm.databinding.ItemProdutoBinding
 import com.eldon.lojavirtualmvvm.model.Produto
 
-class AdaptadorProdutos : RecyclerView.Adapter<AdaptadorProdutos.ProdutoViewHolder>() {
+class AdaptadorProdutos(
+    private val aoClicarNoProduto: (Produto) -> Unit
+) : RecyclerView.Adapter<AdaptadorProdutos.ProdutoViewHolder>() {
 
     private val produtos = mutableListOf<Produto>()
 
@@ -35,12 +37,16 @@ class AdaptadorProdutos : RecyclerView.Adapter<AdaptadorProdutos.ProdutoViewHold
 
     override fun getItemCount(): Int = produtos.size
 
-    class ProdutoViewHolder(
+    inner class ProdutoViewHolder(
         private val binding: ItemProdutoBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun vincular(produto: Produto) {
             binding.produto = produto
+
+            binding.root.setOnClickListener {
+                    aoClicarNoProduto(produto)
+            }
         }
     }
 }
