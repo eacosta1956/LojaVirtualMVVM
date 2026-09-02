@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.eldon.lojavirtualmvvm.R
 import com.eldon.lojavirtualmvvm.databinding.ActivityTelaInicialBinding
+import android.content.Intent
 
 class TelaInicialActivity : AppCompatActivity() {
 
@@ -19,5 +20,10 @@ class TelaInicialActivity : AppCompatActivity() {
         )
 
         binding.lifecycleOwner = this
+
+        binding.botaoProdutos.setOnClickListener {
+            val intencao = Intent(this, ListaProdutosActivity::class.java)
+            startActivity(intencao)
+        }
     }
 }
