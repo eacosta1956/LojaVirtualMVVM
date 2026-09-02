@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LojaVirtualMVVM">
         <activity
+            android:name=".view.ListaProdutosActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.TelaInicialActivity"
             android:exported="true">
             <intent-filter>
